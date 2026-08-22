@@ -1,0 +1,36 @@
+{
+  "name": "yida-web-admin",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build && npm run check:production-artifacts && npm run brand:check",
+    "brand:check": "node scripts/check-brand-identifiers.mjs --scope predeploy",
+    "brand:check:backend": "node scripts/check-brand-identifiers.mjs --scope backend",
+    "check:production-artifacts": "node scripts/check-production-artifacts.mjs",
+    "preview": "vite preview",
+    "type-check": "vue-tsc -b",
+    "test": "vitest run",
+    "test:upload-assets": "node scripts/generate-upload-test-assets.mjs"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.8.4",
+    "echarts": "^5.6.0",
+    "element-plus": "^2.9.7",
+    "pinia": "^3.0.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/tsconfig": "^0.7.0",
+    "jsdom": "^26.0.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vitest": "^3.1.1",
+    "vue-tsc": "^2.2.8"
+  }
+}

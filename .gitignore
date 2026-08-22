@@ -1,0 +1,51 @@
+# IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Java build output
+**/target/
+*.class
+
+# Node build output and dependencies
+**/node_modules/
+**/dist/
+**/coverage/
+*.tsbuildinfo
+
+# Local environment and sensitive configuration
+.env
+.env.*
+!.env.example
+**/application-dev.yml
+**/application-local.yml
+**/application-prod.yml
+**/application-secret.yml
+!**/application-example.yml
+!**/application-local.example.yml
+
+# Secrets, certificates and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+
+# Runtime output and local artifacts
+*.log
+logs/
+**/test-artifacts/
+**/uploads/
+*.pid
+
+# Database client metadata and local dumps
+**/dataSources.xml
+**/dataSources.local.xml
+*.dump
+*.bak
+

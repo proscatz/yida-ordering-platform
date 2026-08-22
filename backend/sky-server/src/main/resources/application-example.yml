@@ -1,0 +1,41 @@
+# 示例文件只展示配置方式，不会被 Spring Boot 自动激活。
+# 推荐通过环境变量配置；不要把真实值写入仓库。
+
+spring:
+  rabbitmq:
+    host: ${YIDA_RABBITMQ_HOST:localhost}
+    port: ${YIDA_RABBITMQ_PORT:5672}
+    username: ${YIDA_RABBITMQ_USERNAME:guest}
+    password: ${YIDA_RABBITMQ_PASSWORD:change-me}
+    virtual-host: ${YIDA_RABBITMQ_VHOST:/}
+
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: ${YIDA_DB_HOST:localhost}
+    port: ${YIDA_DB_PORT:3306}
+    database: ${YIDA_DB_NAME:Yida}
+    username: ${YIDA_DB_USERNAME:root}
+    password: ${YIDA_DB_PASSWORD:change-me}
+  redis:
+    host: ${YIDA_REDIS_HOST:localhost}
+    port: ${YIDA_REDIS_PORT:6379}
+    password: ${YIDA_REDIS_PASSWORD:}
+    database: ${YIDA_REDIS_DATABASE:0}
+  alioss:
+    access-key-id: ${YIDA_OSS_ACCESS_KEY_ID:}
+    access-key-secret: ${YIDA_OSS_ACCESS_KEY_SECRET:}
+    endpoint: ${YIDA_OSS_ENDPOINT:}
+    bucket-name: ${YIDA_OSS_BUCKET:}
+    public-base-url: ${YIDA_OSS_PUBLIC_BASE_URL:}
+  wechat:
+    appid: ${YIDA_WECHAT_APP_ID:}
+    secret: ${YIDA_WECHAT_APP_SECRET:}
+
+yida:
+  messaging:
+    enabled: ${YIDA_MESSAGING_ENABLED:false}
+    outbox-poll-millis: ${YIDA_OUTBOX_POLL_MILLIS:2000}
+  payment:
+    provider: ${YIDA_PAYMENT_PROVIDER:mock}
+

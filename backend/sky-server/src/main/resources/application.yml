@@ -1,0 +1,77 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: yida-ordering-platform
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: "jdbc:mysql://${YIDA_DB_HOST:localhost}:${YIDA_DB_PORT:3306}/${YIDA_DB_NAME:Yida}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true"
+      username: ${YIDA_DB_USERNAME:root}
+      password: ${YIDA_DB_PASSWORD:change-me}
+  redis:
+    host: ${YIDA_REDIS_HOST:localhost}
+    port: ${YIDA_REDIS_PORT:6379}
+    password: ${YIDA_REDIS_PASSWORD:}
+    database: ${YIDA_REDIS_DATABASE:0}
+  rabbitmq:
+    host: ${YIDA_RABBITMQ_HOST:localhost}
+    port: ${YIDA_RABBITMQ_PORT:5672}
+    username: ${YIDA_RABBITMQ_USERNAME:guest}
+    password: ${YIDA_RABBITMQ_PASSWORD:change-me}
+    virtual-host: ${YIDA_RABBITMQ_VHOST:/}
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.yida.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    "com.aliyun.oss": WARN
+    com.yida.mapper: INFO
+    com.yida.service: INFO
+    com.yida.controller: INFO
+
+sky:
+  jwt:
+    admin-secret-key: ${YIDA_ADMIN_JWT_SECRET:local-only-admin-secret-change-before-deploy}
+    admin-ttl: ${YIDA_ADMIN_JWT_TTL:7200000}
+    admin-token-name: token
+    user-secret-key: ${YIDA_USER_JWT_SECRET:local-only-user-secret-change-before-deploy}
+    user-ttl: ${YIDA_USER_JWT_TTL:7200000}
+    user-token-name: authentication
+  alioss:
+    access-key-id: ${YIDA_OSS_ACCESS_KEY_ID:}
+    access-key-secret: ${YIDA_OSS_ACCESS_KEY_SECRET:}
+    endpoint: ${YIDA_OSS_ENDPOINT:}
+    bucket-name: ${YIDA_OSS_BUCKET:}
+    public-base-url: ${YIDA_OSS_PUBLIC_BASE_URL:}
+  wechat:
+    appid: ${YIDA_WECHAT_APP_ID:}
+    secret: ${YIDA_WECHAT_APP_SECRET:}
+    mchid: ${YIDA_WECHAT_MCH_ID:}
+    mch-serial-no: ${YIDA_WECHAT_MCH_SERIAL_NO:}
+    private-key-file-path: ${YIDA_WECHAT_PRIVATE_KEY_PATH:}
+    api-v3-key: ${YIDA_WECHAT_API_V3_KEY:}
+    we-chat-pay-cert-file-path: ${YIDA_WECHAT_PLATFORM_CERT_PATH:}
+    notify-url: ${YIDA_WECHAT_NOTIFY_URL:}
+    refund-notify-url: ${YIDA_WECHAT_REFUND_NOTIFY_URL:}
+
+yida:
+  messaging:
+    enabled: ${YIDA_MESSAGING_ENABLED:false}
+    outbox-poll-millis: ${YIDA_OUTBOX_POLL_MILLIS:2000}
+  payment:
+    provider: ${YIDA_PAYMENT_PROVIDER:mock}
