@@ -4,10 +4,10 @@
 
 ## 技术栈
 
-- 后端：Java 17、Spring Boot、MyBatis、MySQL、Redis、RabbitMQ、WebSocket、JWT、JUnit 5、Mockito
+- 后端：Java 17、Spring Boot、Spring WebSocket、MyBatis、MySQL、Redis、RabbitMQ、JWT、JUnit 5、Mockito
 - 管理端：Vue 3、Vite、TypeScript、Pinia、Vue Router、Axios、Element Plus、ECharts
 - 用户端：Vue 3、Vite、TypeScript、Pinia、Vue Router、Axios、Vant
-- 工程能力：BCrypt、订单状态机、幂等下单、Outbox、缓存治理、Mock 支付、OSS 上传、统一异常处理
+- 工程能力：BCrypt、订单状态机、幂等下单、Outbox、缓存治理、WebSocket 鉴权与重连、Mock 支付、OSS 上传、统一异常处理
 
 ## 仓库结构
 
@@ -66,4 +66,3 @@ npm run dev
 ## 说明
 
 本仓库不附带真实用户数据、真实订单、支付回调报文或云服务凭据。数据库目录仅保留不涉及用户身份数据的增量脚本；原环境中的用户替换和地址演示脚本未进入公开副本。
-

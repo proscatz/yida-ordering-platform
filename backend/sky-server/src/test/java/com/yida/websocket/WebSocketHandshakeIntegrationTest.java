@@ -198,7 +198,8 @@ class WebSocketHandshakeIntegrationTest {
             RedisAutoConfiguration.class,
             RabbitAutoConfiguration.class
     })
-    @Import({WebSocketConfiguration.class, WebSocketServer.class})
+    @Import({WebSocketConfiguration.class, WebSocketServer.class,
+            WebSocketAuthenticationInterceptor.class})
     static class TestApplication {
     }
 

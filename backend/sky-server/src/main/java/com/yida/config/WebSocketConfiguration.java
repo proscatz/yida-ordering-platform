@@ -1,21 +1,28 @@
 package com.yida.config;
 
-import com.yida.websocket.WebSocketHandshakeConfigurator;
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.context.annotation.Bean;
+import com.yida.websocket.WebSocketAuthenticationInterceptor;
+import com.yida.websocket.WebSocketServer;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
 /**
- * WebSocket配置类，用于注册WebSocket的Bean
+ * Spring WebSocket 配置：注册订单提醒处理器和握手鉴权拦截器。
  */
 @Configuration
-public class WebSocketConfiguration {
+@EnableWebSocket
+@RequiredArgsConstructor
+public class WebSocketConfiguration implements WebSocketConfigurer {
+    private final WebSocketServer webSocketServer;
+    private final WebSocketAuthenticationInterceptor authenticationInterceptor;
 
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter(AutowireCapableBeanFactory beanFactory) {
-        WebSocketHandshakeConfigurator.initialize(beanFactory);
-        return new ServerEndpointExporter();
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(webSocketServer, "/ws/{sid}")
+                .addInterceptors(authenticationInterceptor)
+                .setAllowedOriginPatterns("*");
     }
-
 }
+
